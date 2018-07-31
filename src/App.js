@@ -20,8 +20,18 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then(resp => this.setState({ books: resp }))
   }
  
-  updateShelf = () => {
+  updateBookShelf = (bookToChange, shelf) => {
+    BooksAPI.update(bookToChange, shelf);
+    this.setState(prevState => {
 
+      const newBooks = prevState.books.map(book => {
+        if (book.id === bookToChange.id) {
+          book.shelf = shelf
+        }
+        return book
+      })
+      return {books: newBooks}
+    })
   }
 
   render() {
@@ -34,7 +44,7 @@ class BooksApp extends React.Component {
             <div className="search-books-bar">
               <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
               <div className="search-books-input-wrapper">
-                <input type="text" placeholder="Search bySearch by title or author"/>
+                <input type="text" placeholder="Search by title or author"/>
               </div>
             </div>
             <div className="search-books-results">
@@ -53,7 +63,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       {books.filter(book => book.shelf === 'currentlyReading').map(book => (
-                        <Book book={book} />
+                        <Book book={book} key={book.id} onChange={this.updateBookShelf} />
                       ))}
                     </ol>
                   </div>
@@ -63,7 +73,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {books.filter(book => book.shelf === 'wantToRead').map(book => (
-                        <Book book={book} />
+                        <Book book={book} key={book.id} onChange={this.updateBookShelf} />
                       ))}
                     </ol>
                   </div>
@@ -73,7 +83,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {books.filter(book => book.shelf === 'read').map(book => (
-                        <Book book={book} />
+                        <Book book={book} key={book.id} onChange={this.updateBookShelf} />
                       ))}
                     </ol>
                   </div>
