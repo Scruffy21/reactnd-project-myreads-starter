@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    books: {}
+    books: []
   }
 
   constructor(props) {
@@ -28,6 +28,9 @@ class BooksApp extends React.Component {
     console.log(this.state.books)
     return (
       <div className="app">
+        {this.state.books.map(book => (
+          <Book book={book} />
+        ))}
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
