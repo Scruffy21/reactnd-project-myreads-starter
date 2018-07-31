@@ -63,7 +63,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       {books.filter(book => book.shelf === 'currentlyReading').map(book => (
-                        <Book book={book} key={book.id} onChange={this.updateBookShelf} />
+                        <Book book={book} key={book.id} updateBookShelf={this.updateBookShelf} />
                       ))}
                     </ol>
                   </div>
@@ -73,7 +73,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {books.filter(book => book.shelf === 'wantToRead').map(book => (
-                        <Book book={book} key={book.id} onChange={this.updateBookShelf} />
+                        <Book book={book} key={book.id} updateBookShelf={this.updateBookShelf} />
                       ))}
                     </ol>
                   </div>
@@ -83,7 +83,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {books.filter(book => book.shelf === 'read').map(book => (
-                        <Book book={book} key={book.id} onChange={this.updateBookShelf} />
+                        <Book book={book} key={book.id} updateBookShelf={this.updateBookShelf} />
                       ))}
                     </ol>
                   </div>
