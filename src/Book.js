@@ -4,21 +4,15 @@ import React from 'react'
 
 
 class Book extends React.Component {
-    book = this.book;
-    // book.shelf
-    
-    state = {
-        shelf: book.shelf
-    }
 
-
-
+    // book = this.props.book
     render() {
+        console.log(this.props)
         return (
             <li>
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks.thumbnail }}></div>
+                        {/* <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks.thumbnail }}></div> */}
                         <div className="book-shelf-changer">
                             <select value={this.book.shelf}>
                                 <option value="move" disabled>Move to...</option>
@@ -29,10 +23,12 @@ class Book extends React.Component {
                             </select>
                         </div>
                     </div>
-                    <div className="book-title">{book.title}</div>
-                    <div className="book-authors">{book.authors}</div>
+                    {/* <div className="book-title">{book.title}</div> */}
+                    {/* <div className="book-authors">{book.authors}</div> */}
                 </div>
             </li>
         )
     }
 }
+
+export default Book

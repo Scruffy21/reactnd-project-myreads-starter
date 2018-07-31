@@ -1,5 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
+import Book from './Book'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -24,7 +25,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state.books)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -59,6 +60,9 @@ class BooksApp extends React.Component {
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
+                        {this.state.books.filter(book => book.shelf === 'currentlyReading').map(book => (
+                          <Book book={book} />
+                        ))}
                       <li>
                         <div className="book">
                           <div className="book-top">
