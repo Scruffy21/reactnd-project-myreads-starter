@@ -36,7 +36,6 @@ class SearchPage extends React.Component {
     }
 
     render() {
-        console.log(this.state.booksToDisplay);
         return (
             <div className="main-search">
                 <div className="search-books">
