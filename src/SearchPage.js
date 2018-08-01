@@ -10,9 +10,17 @@ class SearchPage extends React.Component {
     state = {
         booksToDisplay: []
     }
-    
+
+    resetSearch = () => {
+        this.setState({booksToDisplay: []});
+    }
 
     search = (event) => {
+        if (event.target.value === "") {
+            this.resetSearch();
+            return false;
+        }
+
         BooksAPI.search(event.target.value)
             .then(resp => {
                 const comparedBooks = resp.map((book) => {
@@ -30,9 +38,13 @@ class SearchPage extends React.Component {
                         return book;
                     }
                 });
-                this.setState({ booksToDisplay: comparedBooks })    
+                this.setState({ booksToDisplay: comparedBooks });
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.resetSearch();
+            })
+        
+
     }
 
     render() {
